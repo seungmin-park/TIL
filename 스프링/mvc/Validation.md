@@ -2,7 +2,7 @@
 
 [1.스프링 없이 순수한 자바만을 이용한 에러 검증](#스프링-없이-순수한-자바만을-이용한-에러-검증)
 
-[2.스프링 없이 순수한 자바만을 이용한 에러 검증](#스프링에서-제공하는-bindingresult-사용)
+[2.스프링에서 제공하는 BindingResult 사용](#스프링에서-제공하는-bindingresult-사용)
 
 - [2-1.FieldError, ObjectError 첫 번째 생성자 사용](#fielderror-objecterror-첫-번째-생성자-사용)
 
