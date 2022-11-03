@@ -13,6 +13,10 @@
     - [파일 추가](#파일-추가)
     - [branch](#branch)
     - [branch 합치기](#branch-합치기)
+    - [Github](#github)
+      - [원격 저장소에 올리기](#원격-저장소에-올리기)
+      - [원격 저장소를 가져오기](#원격-저장소를-가져오기)
+      - [branch로 협업하기](#branch로-협업하기)
     - [참고 자료](#참고-자료)
   
 ### Git이란?
@@ -254,6 +258,193 @@ merge를 완료한 후 다시 log를 찍어보면 잘 branch가 잘 합쳐진 �
 
 ![스크린샷 2022-11-03 오전 3 06 34](https://user-images.githubusercontent.com/78605779/199567682-a6a75f14-041e-409e-94e6-b0e579e7d894.png)
 
+### Github
+
+초반부에서 얘기했듯이 git과 github는 다른 것이다. 우리는 위 실습을 통해서 git의 기본적인 사용법을 익혔다. 그래서 새로운 프로젝트를 진행하면서 git 사용해 버전 관리를 열심히해서  굉장히 뿌듯한 상태가 되었다. 그런데 갑자기 컴퓨터가 고장나버렸다면? 컴퓨터를 초기화했다면? 이제 그 프로젝트와는 영원히 이별해야할 시간이다.
+
+그래서 우리의 사랑스러운 프로젝트와 이별하지 않기 위해서 github와 같은 시스템을 사용해야되는 것이다.
+
+이제부터 중간에 컴퓨터가 고장나더라도 프로젝트를 안전하게 관리하기 위해 온라인 저장소를 만들어보자.
+
+![image](https://user-images.githubusercontent.com/78605779/199651878-f7a6455a-654a-4b02-b052-ac59a475d796.png)
+
+위 그림처럼 github 사이트에 접속해 새로운 저장소를 만들어보자
+
+![image](https://user-images.githubusercontent.com/78605779/199652027-7afc2f5a-0120-449b-bc39-aea725e21ab3.png)
+
+그러면 다음과 같은 화면이 보일 것이다. 만약 보이지 않는다면 저장소를 만들 때 README 파일을 추가했거나 .gitignore파일이 생성되서 그럴 수 있다.
+
+그러면 이제부터 이 원격 저장소와 우리 pc에 존재하는 local 저장소를 연결해보자
+
+![스크린샷 2022-11-03 오후 2 20 12](https://user-images.githubusercontent.com/78605779/199652477-be7760ba-f64c-451e-9b6b-6a87a06e7658.png)
+
+위 그림은 기존에 우리가 작업했던 로컬 저장소이다. 현재 branch를 확인해보면 main으로 되어있다.
+
+만약 git 저장소를 생성했을 때 기본 branch가 main이 아닌 master일 수 있다. 그러면 다음과 같은 명령어로 branch 이름을 main으로 변경할 수 있다.
+
+```
+git branch -M main
+```
+
+[Master branch 이름을 main으로 바꾸는 이유](https://velog.io/@gwsyl22/git-Github-branch-%EC%9D%B4%EB%A6%84-main%EC%9D%98-%EC%A0%95%EC%B2%B4%EB%8A%94)
+
+#### 원격 저장소에 올리기
+
+원격 저장소도 만들었겠다. 이제부터 우리가 작업한 프로젝트를 원격 저장소에 안전하게 보관해보자.
+
+원격 저장소에 올리는 명령어는 바로 `push` 이다. 아래와 같이 사용할 수 있다.
+
+```
+git push -u <원격 저장소 주소> <브랜치이름>
+```
+
+우선 branch 이름은 main으로 할 것이다. 그 동안 작업한 내용을 main에 merge 했기 때문에 가장 최신 버전에 내용을 한번 올려보자.
+
+![image](https://user-images.githubusercontent.com/78605779/199653426-eb829c52-9bff-4e95-8c7f-33e6647a093d.png)
+
+원격 저장소 주소는 위 그림에 나와있는 것을 직접 복사해서 쓰면 되는데 기본 규칙은 `https://github.com/${userName}/${repoName}.get`으로 위 url을 복사헤 마지막에 `.git` 을 붙여줘도 된다. 만약 처음에 생성했을 때 아래 그림과 비슷하게 생겼다면 우측에 code라고 적힌 초록색 버튼을 누르면 확인이 가능하다.
+
+![image](https://user-images.githubusercontent.com/78605779/199653833-749f14f2-faf0-47cf-b06c-82e26b812980.png)
+
+그러면 다음과 같이 우리가 작업한 내용이 잘 올라간 것을 확인할 수 있을 것이다.
+
+![스크린샷 2022-11-03 오후 2 30 37](https://user-images.githubusercontent.com/78605779/199653405-d865208c-4825-45c3-97cb-b2076672bb23.png)
+
+그런데 github에 push를 할 때마다 이렇게 긴 원격 저장소 주소를 작성하는 것이 꽤 번거롭다.
+
+그래서 이 주소를 변수로 만들어서 저장해둘 수 있는데 이 때 사용하는 명령어가 `remote`이다.
+
+```
+git remote add <변수명> <주소>
+```
+
+이제 origin이라는 변수를 만들어 새롭게 push해보자.
+
+우선 첫 번째로 우리의 원격 저장소 주소를 변수로 등록한다.
+
+```
+git remote add origin <주소>
+```
+
+그리고 여지껏 해왔던 것 처럼 파일을 수정하거나 추가한 후 add, commit 을 해준다.
+
+마지막으로 우리가 만든 origin이라는 변수를 이용해 push를 하면된다.
+
+```
+git push origin main
+```
+
+![스크린샷 2022-11-03 오후 2 48 46](https://user-images.githubusercontent.com/78605779/199655190-fca3e6bc-253e-4ebe-81f3-bf94c493ea4a.png)
+
+gitbub에 있는 원격 저장소에 들어가 확인하면 변경된 내용이 잘 반영되었을 것이다.
+
+그런데 이번에는 push를 할 때 `-u`를 생략한 것을 확인할 수 있다. `-u`는 `--set-upstream`의 약어로 뒤에오는 내용들과 우리가 현재 위치한 로컬은 연결한 것이다.
+
+![image](https://user-images.githubusercontent.com/78605779/199656719-2afdfc8f-2f4e-4d4c-a1b5-eb1f3030f552.png)
+
+그래서 처음 push를 할 때 `-u`을 통해서 원격 저장소와 연결을 했을 경우 아래와 같이 간단하게 push도 가능하다.
+
+```
+git push
+```
+
+![스크린샷 2022-11-03 오후 3 07 28](https://user-images.githubusercontent.com/78605779/199657024-025abe9e-7efa-435b-9cd5-6f23c1ef8033.png)
+
+#### 원격 저장소를 가져오기
+
+원격 저장소에 올리는 방법을 알아봤으니 이제는 가져오는 방법을 알아보자.
+
+간단하게 clone 명령어를 사용하면 되는데 다음과 같다.
+
+```
+git clone <원격 저장소 주소>
+```
+
+`git clone https://github.com/seungmin-park/git.git`를 통해서 원격 저장소를 그대로 가져올 수 있다. 이를 통해서 하나의 원격 저장소에서 함께 코드를 짜는 것이 가능해졌다.
+
+그러나 내가 이 원격 저장소에 주인이 아니라면 push가 불가능 할 것이다. 이를 해결하기 위해서는 원격 저장소의 주인이 settings > collaborators > Add people로 사용자를 추가해줘야된다.
+
+그러면 이제 함께 코딩을 하는 상황을 가정해보자.
+
+![스크린샷 2022-11-03 오후 3 30 17](https://user-images.githubusercontent.com/78605779/199659480-37e8e326-a187-4a0e-9070-a62c976a21cb.png)
+
+위 그림 처럼 열심히 작업을 했으니 이제 push를 해볼까?
+
+![스크린샷 2022-11-03 오후 3 31 24](https://user-images.githubusercontent.com/78605779/199659604-4d0ba9e8-fe06-43ae-ab8c-3210e831ebe1.png)
+
+push했더니 에러가 발생했다. 에러가 발생한 이유는 다른 사람이 먼저 원격 저장소에 push를 하여 변화가 생겼기 때문이다. github에 들어가 확인을 해보면 user2가 새로운 파일을 생성한 것을 확인할 수 있다.
+
+![image](https://user-images.githubusercontent.com/78605779/199659737-50d6ba46-d2e8-4a04-8936-9a2b9429f900.png)
+
+이 문제를 해결하기 위해 에러 메세지에 밑에 부분을 보면 hint가 적혀있다. `git pull` 이라고
+
+pull은 원격 저장소에 있는 내용을 로컬 저장소에 합치는 일을 해준다.
+
+```
+git pull <원격 저장소 주소> <브랜치 이름>
+```
+
+기존에 `-u` 옵션을 통해 upstream을 잘 설정해 두었으면 간단하게 push만 작성해도 된다.
+
+그러면 이제 git pull 명령어를 통해서 로컬 저장소의 내용을 원격 저장소에 있는 내용과 합쳐보자.
+
+![스크린샷 2022-11-03 오후 3 42 53](https://user-images.githubusercontent.com/78605779/199661036-84d49b95-21fb-4bbf-ab53-7afe2f30798d.png)
+
+push 명령어를 통해서 user2가 작성한 파일을 local로 가져온 모습이다. 이제 로컬 저장소를 원격 저장소와 합쳐졌으니 다시 push를 하면 잘 작동될 것이다.
+
+![image](https://user-images.githubusercontent.com/78605779/199661152-35a86664-70df-4bd3-93db-052695ed933f.png)
+
+push 명령어는 fetch + merge를 수행해주는 것인데 fetch는 현재 로컬 저장소와 원격 저장소에 변경사항을 확인하는 것이다. 그래서 원격 저장소와 로컬 저장소에 차이점이 존재하는지 확인하고 이를 합치는 과정을 수행해 준다. 만약 여러 사용자가 동일한 부분을 수정했다면 merge할 때 충돌이 발생할 수 있는데 이는 기존에 merge에서 해결하는 것과 동일하게 해결하면 된다.
+
+#### branch로 협업하기
+
+github에 저장소를 올리고 내려받고 다른사람과 함께 코드를 작성하는 방법을 알아봤다.  이제는 원본 프로젝트를 안전하게 관리하며 [branch](#branch)를 통해서 협업을 해보자. github페이지에서 branch를 만들어도 되고 로컬에서 만들고 push해도 된다.
+
+![스크린샷 2022-11-03 오후 4 11 49](https://user-images.githubusercontent.com/78605779/199664667-5dad280c-756e-4102-b1dd-fe7a3b145f4d.png)
+
+feature/basket이라는 branch에서 새로운 기능을 추가하고 push까지 마쳤다.
+
+github에 접속해서 확인해보니 제대로 생성된 것이 확인된다.
+
+![image](https://user-images.githubusercontent.com/78605779/199664869-6883b175-2a21-45fc-b2df-b6cb4b71a633.png)
+
+이렇게 새롭게 branch를 생성해서 작업한 장바구니가 잘 작동해 기존에 main branch에 합치고 싶어졌다면 local에서 merge를 해도 된다. 하지만 혼자 개발하는 것이 아닌 다른 사람과 함께 일한다면 코드를 먼저 검증해야한다. 그래서 보통 github 사이트에 접속해서 merge하는 경우가 많다. github사이트에서 원격 저장소에 접근해 Pull requests를 통해서 진행하면 된다.
+
+`Pull Requests > new pull request > choice branch > crete new pull request`
+
+![image](https://user-images.githubusercontent.com/78605779/199665846-ec575282-a7e1-41c5-aa43-4b1a996ad543.png)
+
+![image](https://user-images.githubusercontent.com/78605779/199665868-a63e3efd-e3a9-47f4-8839-a88bfeb0e458.png)
+
+![image](https://user-images.githubusercontent.com/78605779/199665914-65776620-6edd-41b0-b776-7a7c20cfcaba.png)
+
+![image](https://user-images.githubusercontent.com/78605779/199666028-5a985132-e053-4169-ae96-facde70220de.png)
+
+이렇게 새로운 branch를 merge할려고 할 때 두 가지 상황이 있을 수 있다.
+
+- 첫 번째로 동일한 부분의 수정이 발생해 충돌이 발생했을 경우
+
+    ![image](https://user-images.githubusercontent.com/78605779/199666591-7c279dd5-8b5a-4b35-b71f-0fe1469b40a6.png)
+
+    우선 위 처럼 충돌이 발생한 경우 `Merge pull request` 버튼이 비활성화 돼있으며 `Resolve conflicts`이 존재하는 것을 확인할 수 있다. `Resolve conflicts` 버튼을 누르면 다음과 같은 창이 나오는데 기존에 충돌을 해결하듯이 해결하면 된다.
+
+    ![image](https://user-images.githubusercontent.com/78605779/199667227-a8f928e9-44b0-4c4e-b491-eba1cc4ab049.png)
+
+- 문제 없이 바로 merge가 가능한 경우
+
+    ![image](https://user-images.githubusercontent.com/78605779/199666526-ad7a0536-0c9d-44a1-8c3c-d603352a9764.png)
+
+    충돌이 발생해 충돌을 해결하거나 아무런 충돌이 발생하지 않았다면 위와 같은 화면을 볼 수 있을 것이다. 여기서 코드 리뷰를 하거나 코멘트들 달 수도 있다.
+
+    ![image](https://user-images.githubusercontent.com/78605779/199667581-277ae650-d0b3-4254-83b9-57775b84a18a.png)
+
+    그리고 `Merge pull request`을 통해서 branch를 merge할 수 있다.
+
+    ![image](https://user-images.githubusercontent.com/78605779/199667667-7cb7f1ce-e57b-4094-821c-5a2f1a5aa741.png)
+
+    그러면 아래 그림과 같이 merge가 성공한 것을 확인할 수 있다.
+
+    ![image](https://user-images.githubusercontent.com/78605779/199667975-a071b51c-58dc-46fa-9d4a-5b38484b6aec.png)
 
 ### 참고 자료
 [코딩 애플](https://codingapple.com/course/git-and-github/)
