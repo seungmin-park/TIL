@@ -13,6 +13,9 @@
     - [파일 추가](#파일-추가)
     - [branch](#branch)
     - [branch 합치기](#branch-합치기)
+    - [다양한 merge](#다양한-merge)
+      - [3-way merge](#3-way-merge)
+      - [fast-forward merge](#fast-forward-merge)
     - [실수했을 때 대처 방법](#실수했을-때-대처-방법)
     - [Github](#github)
       - [원격 저장소에 올리기](#원격-저장소에-올리기)
@@ -258,6 +261,26 @@ git merge <branchName>
 merge를 완료한 후 다시 log를 찍어보면 잘 branch가 잘 합쳐진 모습을 확인할 수 있다.
 
 ![스크린샷 2022-11-03 오전 3 06 34](https://user-images.githubusercontent.com/78605779/199567682-a6a75f14-041e-409e-94e6-b0e579e7d894.png)
+
+### 다양한 merge
+
+merge 명령어들 통해서 branch를 합쳐봤는데 다양한 방법으로 branch를 합치는 것이 가능하다.
+
+#### 3-way merge
+
+첫 번째로 3-way merge는 우리가 저번에 사용한 merge 명령어로 브랜치를 합쳤을 때 일어난 merge 방식이 바로 3-way merge 방식이다.
+
+![image](https://user-images.githubusercontent.com/78605779/200175113-1b66c9e1-f255-4d7d-81dc-e4926093c656.png)
+
+합치고 싶은 두 branch에 각각 새로운 commit이 존재할 때 새로운 commit을 하나 생성하면서 두 branch를 합쳐준다.
+
+#### fast-forward merge
+
+merge명령어를 사용했을 때 위 방식과 또 다르게 동작하는 경우가 있는데 그 경우가 기존 branch가 아무련 변동사항이 없을 경우이다.
+
+예를 들어 일정 시점에 main branch에서 feature/abc라는 branch를 생성해서 여러 작업을 한 후 다시 main brach에 합칠려고 한다. 그런데 feature/abc branch를 생성한 시점부터 main branch에 아무런 변화가 없다면, 즉 새로운 commit이 하나도 없다면 merge 명령어를 통해 합칠 경우 fast-forward merge가 일어난다.
+
+![image](https://user-images.githubusercontent.com/78605779/200175736-5da4c22b-f514-462a-a6c1-688f26fa0ee9.png)
 
 ### 실수했을 때 대처 방법
 
