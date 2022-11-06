@@ -155,6 +155,7 @@ git restore --staged <fileName>
 branch는 독립적으로 작업을 진행하기 위한 개념으로 이를 통해 프로젝트를 여러 갈래로 나눠 여러 개발자가 동시에 다양한 작업을 할 수 있도록 해준다.
 
 ![image](https://user-images.githubusercontent.com/78605779/199557195-5311afea-e89a-4558-9734-39dd36c5f409.png)
+[출처)코딩애플](https://codingapple.com/course/git-and-github/)
 
 위 그림을 보면 쉽게 이해가 될 것이다.
 
@@ -187,6 +188,7 @@ git switch <branchName>
 switch 명령어를 통해서 branch를 이동한 것을 확인할 수 있을 것이다. 만약 윈도우에서 vscode 등을 이용해 실습해 이동한 것이 확인이 안된다면 status 명령어를 통해서 현재 위치한 branch를 확인할 수 있다.
 
 ![스크린샷 2022-11-03 오전 2 31 48](https://user-images.githubusercontent.com/78605779/199560611-b20b1728-2b54-4bf2-a0f6-cebbb27b28c3.png)
+[출처)코딩애플](https://codingapple.com/course/git-and-github/)
 
 이제 새롭게 생성한 branch에서 파일을 생성하고 커밋을 하면 아래와 같은 그림으로 표현할 수 있다.
 
@@ -207,6 +209,7 @@ feature/coupon branch에서 작업한 후 다시 main branch로 돌아가보면 
 그러면 다음으로 각 브랜치에서 파일을 추가하거나 수정하는 등을 통해 아래의 그림처럼 만들어보자
 
 ![image](https://user-images.githubusercontent.com/78605779/199563003-be890298-dd7d-4659-8e4a-2769b94c8f9b.png)
+[출처)코딩애플](https://codingapple.com/course/git-and-github/)
 
 그리고 log 명령어에 graph 옵션을 추가해서 사용하면 아래와 같이 commit 기록을 확인할 수 있을 것이다.
 
@@ -237,6 +240,7 @@ git merge <branchName>
 성공적으로 merge가 되면 현재 main branch에 위치해있어도 기존에 feature/coupon branch에서 작성한 것들을 확인할 수 있을 것이다.
 
 ![image](https://user-images.githubusercontent.com/78605779/199565076-cfc1a505-7723-47e0-a30b-98c2248afaed.png)
+[출처)코딩애플](https://codingapple.com/course/git-and-github/)
 
 <h2>그러나</h2>
 
@@ -245,6 +249,7 @@ git merge <branchName>
 아래 그림처럼 만약 main과 feature/coupon 둘 다 동일한 파일에 동일한 곳을 수정했다면 어떻게 될까?
 
 ![image](https://user-images.githubusercontent.com/78605779/199565494-580d179b-c50a-44f0-b500-8597f1fb69db.png)
+[출처)코딩애플](https://codingapple.com/course/git-and-github/)
 
 위 그림의 상황을 재연하기 위해 각각의 branch에서 동일한 부분을 수정하고 merge를 진행해보자
 
@@ -257,6 +262,7 @@ git merge <branchName>
 ![스크린샷 2022-11-03 오전 3 03 46](https://user-images.githubusercontent.com/78605779/199567134-9a4a7db3-54d2-41eb-84f8-df7abf14eeef.png)
 
 ![image](https://user-images.githubusercontent.com/78605779/199566015-528e9afe-bd5a-4b45-a6ad-cda663aa30de.png)
+[출처)코딩애플](https://codingapple.com/course/git-and-github/)
 
 merge를 완료한 후 다시 log를 찍어보면 잘 branch가 잘 합쳐진 모습을 확인할 수 있다.
 
@@ -271,6 +277,7 @@ merge 명령어들 통해서 branch를 합쳐봤는데 다양한 방법으로 br
 첫 번째로 3-way merge는 우리가 저번에 사용한 merge 명령어로 브랜치를 합쳤을 때 일어난 merge 방식이 바로 3-way merge 방식이다.
 
 ![image](https://user-images.githubusercontent.com/78605779/200175113-1b66c9e1-f255-4d7d-81dc-e4926093c656.png)
+[출처)코딩애플](https://codingapple.com/course/git-and-github/)
 
 합치고 싶은 두 branch에 각각 새로운 commit이 존재할 때 새로운 commit을 하나 생성하면서 두 branch를 합쳐준다.
 
@@ -281,6 +288,7 @@ merge명령어를 사용했을 때 위 방식과 또 다르게 동작하는 경�
 예를 들어 일정 시점에 main branch에서 feature/abc라는 branch를 생성해서 여러 작업을 한 후 다시 main brach에 합칠려고 한다. 그런데 feature/abc branch를 생성한 시점부터 main branch에 아무런 변화가 없다면, 즉 새로운 commit이 하나도 없다면 merge 명령어를 통해 합칠 경우 fast-forward merge가 일어난다.
 
 ![image](https://user-images.githubusercontent.com/78605779/200175736-5da4c22b-f514-462a-a6c1-688f26fa0ee9.png)
+[출처)코딩애플](https://codingapple.com/course/git-and-github/)
 
 ### 실수했을 때 대처 방법
 
